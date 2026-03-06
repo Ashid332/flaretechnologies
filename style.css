@@ -698,101 +698,225 @@ p {
     border-bottom: 1px solid var(--border-subtle);
 }
 
-/* --- AI-POWERED BUSINESS SYSTEMS (Services Grid) --- */
+/* --- AI-POWERED BUSINESS SYSTEMS (Floating Ecosystem) --- */
 .ecosystem-section {
     background-color: var(--bg-secondary);
     position: relative;
     overflow: hidden;
+    padding: 10rem 0;
+    /* Extra padding for floating depth */
 }
 
-.services-category-title {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: 4rem 0 1.5rem 0;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border-subtle);
-}
-
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-bottom: 2rem;
-}
-
-.service-card {
-    background: rgba(11, 15, 25, 0.85);
-    backdrop-filter: blur(16px);
-    padding: 2rem 2rem;
-    border-radius: 12px;
-    position: relative;
-    border: 1px solid var(--border-subtle);
-    transition: all 0.4s var(--easing-premium);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
-.service-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(0, 212, 255, 0.4);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 212, 255, 0.15);
-}
-
-.service-gradient-bar {
+/* Background Animated Network */
+.eco-bg-visual {
     position: absolute;
-    left: 0;
-    top: 0;
+    top: 50%;
+    left: 50%;
+    width: 1400px;
+    height: 1000px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.15;
+}
+
+.eco-bg-path {
+    fill: none;
+    stroke: url(#eco-bg-grad);
+    stroke-width: 2;
+    stroke-dasharray: 10 15;
+    animation: flowBgLine 30s linear infinite;
+}
+
+@keyframes flowBgLine {
+    to {
+        stroke-dashoffset: -1000;
+    }
+}
+
+/* Interactive Layout Layout */
+.eco-interactive-layout {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 4rem auto 0;
+    z-index: 2;
+}
+
+/* Base Floating Card */
+.eco-floating-card {
+    background: rgba(18, 24, 38, 0.7);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 2.5rem;
     width: 100%;
-    height: 100%;
+    position: relative;
+    transition: all 0.6s var(--easing-premium, cubic-bezier(0.25, 1, 0.5, 1));
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.02);
+    cursor: default;
+    overflow: hidden;
+}
+
+/* Diamond Position Spacing */
+.card-top {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 60%;
+}
+
+.card-mid-left {
+    grid-column: 1;
+    justify-self: end;
+    transform: translateY(-40px);
+}
+
+.card-mid-right {
+    grid-column: 2;
+    justify-self: start;
+    transform: translateY(-40px);
+}
+
+.card-bottom {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 60%;
+    transform: translateY(-80px);
+}
+
+/* The Gradient Glow Border */
+.eco-glow-border {
+    position: absolute;
+    inset: -1px;
+    border-radius: 16px;
     background: var(--infinity-gradient);
-    border-radius: 12px;
-    opacity: 0;
     z-index: -1;
-    transition: opacity 0.4s;
-    filter: blur(8px);
-    margin: -1px;
-    padding: 1px;
+    opacity: 0;
+    filter: blur(12px);
+    transition: opacity 0.6s var(--easing-premium);
 }
 
-.service-card:hover .service-gradient-bar {
-    opacity: 0.5;
+.eco-floating-card:hover .eco-glow-border {
+    opacity: 0.6;
 }
 
-.service-icon {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
+/* Hover Physics */
+.eco-floating-card:hover {
+    transform: translateY(-5px) !important;
+    /* Overrides stagger */
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 212, 255, 0.15);
+}
+
+/* Card Header (Always Visible) */
+.eco-card-header {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.eco-title-wrap {
+    flex: 1;
+}
+
+.eco-icon-wrap {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 42px;
-    height: 42px;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--border-subtle);
+    font-size: 1.75rem;
     color: var(--text-primary);
+    transition: all 0.4s var(--easing-premium, cubic-bezier(0.25, 1, 0.5, 1));
+}
+
+.eco-floating-card:hover .eco-icon-wrap {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(138, 43, 226, 0.4);
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
+    color: #FFF;
+    transform: scale(1.05);
+}
+
+.eco-card-header h4 {
+    font-size: 1.35rem;
+    /* Slightly smaller to fit description */
+    margin: 0;
+    color: var(--text-primary);
+    transition: color 0.4s;
+    margin-bottom: 0.25rem;
+}
+
+.eco-short-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.eco-floating-card:hover .eco-card-header h4 {
+    background: var(--infinity-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* The Reveal Content (Hidden by default) */
+.card-reveal-content {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.6s var(--easing-premium), opacity 0.5s ease-in-out, margin-top 0.4s;
+}
+
+.eco-floating-card:hover .card-reveal-content {
+    max-height: 500px;
+    opacity: 1;
+    margin-top: 2rem;
+}
+
+.card-reveal-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+}
+
+.card-reveal-list li {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.25rem;
+    position: relative;
+    padding-left: 1.5rem;
+    line-height: 1.5;
+}
+
+.card-reveal-list li:last-child {
+    margin-bottom: 0;
+}
+
+.card-reveal-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-subtle);
     transition: all 0.3s;
 }
 
-.service-card:hover .service-icon {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(138, 43, 226, 0.4);
-    box-shadow: 0 0 15px rgba(138, 43, 226, 0.2);
-}
-
-.service-card h4 {
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
-    color: var(--text-primary);
-}
-
-.service-card p {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-    margin-bottom: 0;
+.eco-floating-card:hover .card-reveal-list li::before {
+    background: var(--infinity-gradient);
+    border-color: transparent;
 }
 
 
@@ -1526,8 +1650,33 @@ p {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .services-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .eco-interactive-layout {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .eco-floating-card {
+        width: 100%;
+        max-width: 600px;
+        min-width: 0;
+    }
+
+    /* Reset Diamond positioning offsets */
+    .card-top,
+    .card-mid-left,
+    .card-mid-right,
+    .card-bottom {
+        grid-column: auto;
+        justify-self: auto;
+        transform: none;
+        width: 100%;
+    }
+
+    /* Remove float stagger on smaller screens */
+    .eco-floating-card:nth-child(even) {
+        transform: none;
     }
 
     .results-grid {
@@ -1560,8 +1709,17 @@ p {
         grid-template-columns: 1fr;
     }
 
-    .services-grid {
-        grid-template-columns: 1fr;
+    /* Adjust eco cards for mobile */
+    .eco-floating-card {
+        padding: 1.5rem;
+        min-width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .eco-icon-wrap {
+        width: 48px;
+        height: 48px;
+        font-size: 1.5rem;
     }
 
     /* --- HOW WE WORK (Vertical Stack on Mobile) --- */

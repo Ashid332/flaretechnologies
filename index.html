@@ -192,169 +192,127 @@
             </div>
         </section>
 
-        <!-- Platform Ecosystem Section (Redesigned) -->
+        <!-- Platform Ecosystem Section (Redesigned Diamond Layout) -->
         <section id="services" class="ecosystem-section section-padding">
-            <div class="container">
-                <div class="section-header text-center scroll-anim slide-up">
-                    <h2 class="section-badge">Platform</h2>
-                    <h3 class="section-title">AI-Powered Business Systems</h3>
-                    <p class="section-desc mx-auto">Flare Technologies delivers a complete ecosystem of digital, AI,
-                        engineering, and cloud solutions designed to help businesses build faster, operate smarter, and
-                        scale efficiently.</p>
+
+            <!-- Animated Ecosystem SVG Background -->
+            <svg class="eco-bg-visual" viewBox="0 0 1400 1000" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                    <linearGradient id="eco-bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#FF3D3D" />
+                        <stop offset="33%" stop-color="#FF8C00" />
+                        <stop offset="66%" stop-color="#00D4FF" />
+                        <stop offset="100%" stop-color="#8A2BE2" />
+                    </linearGradient>
+                </defs>
+                <!-- Infinite Data Loop Curve -->
+                <path class="eco-bg-path"
+                    d="M 200,500 C 100,200 400,100 700,500 C 1000,900 1300,800 1200,500 C 1100,200 800,100 500,500 C 200,900 300,800 200,500 Z" />
+                <!-- Connecting Network Lines -->
+                <path class="eco-bg-path" d="M 350,300 L 1050,700" style="animation-delay: -5s" />
+                <path class="eco-bg-path" d="M 1050,300 L 350,700" style="animation-delay: -10s" />
+            </svg>
+
+            <div class="container" style="position: relative; z-index: 2;">
+                <div class="section-header text-center scroll-anim slide-up"
+                    style="max-width: 800px; margin: 0 auto 5rem auto;">
+                    <h2 class="section-badge">Platform Architecture</h2>
+                    <h3 class="section-title">AI-Powered Business Ecosystem</h3>
+                    <p class="section-desc mx-auto">Flare Technologies combines AI automation, engineering, cloud
+                        infrastructure, marketing, and creative production into one connected ecosystem designed to help
+                        businesses build, automate, and scale faster.</p>
                 </div>
 
-                <!-- Category 1: AI & Automation Systems -->
-                <div class="services-category scroll-anim fade-in delay-1">
-                    <h4 class="services-category-title">AI & Automation Systems</h4>
-                    <div class="services-grid">
-                        <div class="service-card">
-                            <div class="service-gradient-bar"></div>
-                            <div class="service-icon">🤖</div>
-                            <h4>AI Automation</h4>
-                            <p>Intelligent workflows that replace manual data entry and streamline core business
-                                operations.</p>
+                <div class="eco-interactive-layout scroll-anim fade-in delay-2">
+
+                    <!-- Top: AI & Automation Systems -->
+                    <div class="eco-floating-card card-top">
+                        <div class="eco-glow-border"></div>
+                        <div class="eco-card-header">
+                            <div class="eco-icon-wrap">🤖</div>
+                            <div class="eco-title-wrap">
+                                <h4>AI & Automation Systems</h4>
+                                <p class="eco-short-desc">Automate operations, workflows, and decision systems using
+                                    intelligent AI technologies.</p>
+                            </div>
                         </div>
-                        <div class="service-card">
-                            <div class="service-gradient-bar"></div>
-                            <div class="service-icon">⚡</div>
-                            <h4>Workflow Automation</h4>
-                            <p>Connect disparate software tools into unified, autonomous execution pipelines.</p>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-gradient-bar"></div>
-                            <div class="service-icon">📦</div>
-                            <h4>Custom Logistics Management System</h4>
-                            <p>Data-driven routing and inventory tracking platforms built for modern supply chains.</p>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-gradient-bar"></div>
-                            <div class="service-icon">🧠</div>
-                            <h4>AI Agents & Business Automation</h4>
-                            <p>Deploy specialized AI agents designed to handle complex logic, scheduling, and
-                                decision-making.</p>
+                        <div class="card-reveal-content">
+                            <ul class="card-reveal-list">
+                                <li>AI Automation</li>
+                                <li>AI Agents</li>
+                                <li>Workflow Automation</li>
+                                <li>Business Process Automation</li>
+                                <li>Custom Logistics Management System</li>
+                            </ul>
                         </div>
                     </div>
-                </div>
 
-                <!-- Category 2: Development & Engineering -->
-                <div class="services-category scroll-anim fade-in delay-2">
-                    <h4 class="services-category-title">Development & Engineering</h4>
-                    <div class="services-grid">
-                        <div class="service-card">
-                            <div class="service-gradient-bar"></div>
-                            <div class="service-icon">💻</div>
-                            <h4>Website Development</h4>
-                            <p>Design and build modern, high-performance websites optimized for scalability and user
-                                experience.</p>
+                    <!-- Middle Left: Development & Engineering -->
+                    <div class="eco-floating-card card-mid-left">
+                        <div class="eco-glow-border"></div>
+                        <div class="eco-card-header">
+                            <div class="eco-icon-wrap">💻</div>
+                            <div class="eco-title-wrap">
+                                <h4>Development & Engineering</h4>
+                                <p class="eco-short-desc">Design and build scalable digital platforms, applications, and
+                                    custom software solutions.</p>
+                            </div>
                         </div>
-                        <div class="service-card">
-                            <div class="service-gradient-bar"></div>
-                            <div class="service-icon">📱</div>
-                            <h4>Software Development</h4>
-                            <p>Robust, custom software solutions engineered to solve specific organizational challenges.
-                            </p>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-gradient-bar"></div>
-                            <div class="service-icon">🌐</div>
-                            <h4>Web Application Development</h4>
-                            <p>Complex, interactive web apps featuring dynamic databases and seamless API integrations.
-                            </p>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-gradient-bar"></div>
-                            <div class="service-icon">⚙️</div>
-                            <h4>Product Engineering</h4>
-                            <p>Full-lifecycle development taking abstract technical concepts through to production-ready
-                                software.</p>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-gradient-bar"></div>
-                            <div class="service-icon">👥</div>
-                            <h4>Agile Development Team Augmentation</h4>
-                            <p>Embed senior-level engineers seamlessly into your existing technical workforce to
-                                accelerate delivery.</p>
+                        <div class="card-reveal-content">
+                            <ul class="card-reveal-list">
+                                <li>Website Development</li>
+                                <li>Web Application Development</li>
+                                <li>Software Development</li>
+                                <li>Product Engineering</li>
+                                <li>Agile Development Team Augmentation</li>
+                            </ul>
                         </div>
                     </div>
-                </div>
 
-                <!-- Category 3: Cloud & Infrastructure -->
-                <div class="services-category scroll-anim fade-in delay-3">
-                    <h4 class="services-category-title">Cloud & Infrastructure</h4>
-                    <div class="services-grid">
-                        <div class="service-card">
-                            <div class="service-gradient-bar"></div>
-                            <div class="service-icon">☁️</div>
-                            <h4>Cloud Infrastructure Setup</h4>
-                            <p>Architect robust, high-availability server environments utilizing AWS, Azure, or Google
-                                Cloud.</p>
+                    <!-- Middle Right: Cloud & Infrastructure -->
+                    <div class="eco-floating-card card-mid-right">
+                        <div class="eco-glow-border"></div>
+                        <div class="eco-card-header">
+                            <div class="eco-icon-wrap">☁️</div>
+                            <div class="eco-title-wrap">
+                                <h4>Cloud & Infrastructure</h4>
+                                <p class="eco-short-desc">Build reliable, scalable infrastructure that supports modern
+                                    digital products and automation systems.</p>
+                            </div>
                         </div>
-                        <div class="service-card">
-                            <div class="service-gradient-bar"></div>
-                            <div class="service-icon">🔄</div>
-                            <h4>Seamless Cloud Migration</h4>
-                            <p>Transition legacy applications to modern cloud architecture with zero data loss or
-                                operational downtime.</p>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-gradient-bar"></div>
-                            <div class="service-icon">🚀</div>
-                            <h4>DevOps & Deployment Systems</h4>
-                            <p>Automate CI/CD pipelines ensuring fast, secure, and reliable code deployment to
-                                production.</p>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-gradient-bar"></div>
-                            <div class="service-icon">🏛️</div>
-                            <h4>Scalable Backend Architecture</h4>
-                            <p>Database design and routing logic structured to handle exponential user load without
-                                degrading.</p>
+                        <div class="card-reveal-content">
+                            <ul class="card-reveal-list">
+                                <li>Cloud Infrastructure Setup</li>
+                                <li>Seamless Cloud Migration</li>
+                                <li>DevOps & Deployment Systems</li>
+                                <li>Scalable Backend Architecture</li>
+                            </ul>
                         </div>
                     </div>
-                </div>
 
-                <!-- Category 4: Growth & Marketing Systems -->
-                <div class="services-category scroll-anim fade-in delay-4">
-                    <h4 class="services-category-title">Growth & Marketing Systems</h4>
-                    <div class="services-grid">
-                        <div class="service-card">
-                            <div class="service-gradient-bar"></div>
-                            <div class="service-icon">📈</div>
-                            <h4>Digital Marketing</h4>
-                            <p>Data-driven acquisition campaigns designed to decrease CPA and drive measurable revenue.
-                            </p>
+                    <!-- Bottom: Growth & Marketing Systems -->
+                    <div class="eco-floating-card card-bottom">
+                        <div class="eco-glow-border"></div>
+                        <div class="eco-card-header">
+                            <div class="eco-icon-wrap">📈</div>
+                            <div class="eco-title-wrap">
+                                <h4>Growth & Marketing Systems</h4>
+                                <p class="eco-short-desc">Launch products, grow audiences, and scale businesses using
+                                    data-driven marketing and creative execution.</p>
+                            </div>
                         </div>
-                        <div class="service-card">
-                            <div class="service-gradient-bar"></div>
-                            <div class="service-icon">🎯</div>
-                            <h4>Influencer-Led Product Launch</h4>
-                            <p>Strategic partnerships mapping influencer audiences directly to dynamic product rollouts.
-                            </p>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-gradient-bar"></div>
-                            <div class="service-icon">🛒</div>
-                            <h4>E-commerce Growth Accelerator</h4>
-                            <p>Optimize storefront conversion rates and implement aggressive retargeting
-                                infrastructures.</p>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-gradient-bar"></div>
-                            <div class="service-icon">✨</div>
-                            <h4>Brand Identity & Digital Presence Revamp</h4>
-                            <p>Modernize your visual language and digital positioning to capture premium market share.
-                            </p>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-gradient-bar"></div>
-                            <div class="service-icon">🎬</div>
-                            <h4>Video Production</h4>
-                            <p>High-fidelity commercial video assets engineered to build trust and educate end users.
-                            </p>
+                        <div class="card-reveal-content">
+                            <ul class="card-reveal-list">
+                                <li>Digital Marketing</li>
+                                <li>Influencer-Led Product Launch</li>
+                                <li>E-commerce Growth Accelerator</li>
+                                <li>Brand Identity & Digital Presence Revamp</li>
+                                <li>Video Production</li>
+                            </ul>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </section>
 
