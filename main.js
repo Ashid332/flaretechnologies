@@ -134,6 +134,8 @@ document.addEventListener('DOMContentLoaded', () => {
             this.closeIcon = this.launcher.querySelector('.close-icon');
 
             this.isOpen = false;
+            this.captureState = 'IDLE';
+            this.leadData = {};
             this.init();
         }
 
@@ -143,13 +145,13 @@ document.addEventListener('DOMContentLoaded', () => {
             this.form.addEventListener('submit', (e) => this.handleSubmit(e));
 
             // Setup Initial State
-            this.postBotMessage(`Hello! I'm the Flare assistant.<br>I can help you explore our AI automation, marketing systems, and development solutions.<br><br>What would you like to do today?`);
+            this.postBotMessage(`Hello! I'm the Flare assistant. I can help you explore our AI solutions and digital growth systems.<br><br>What are you looking to improve today?`);
             this.renderOptions([
-                { text: 'Explore Services', action: 'explore' },
-                { text: 'Learn About AI Automation', action: 'ai_auto' },
-                { text: 'Ask a Question', action: 'ask' },
-                { text: 'Book Consultation', action: 'book', style: 'action-btn' },
-                { text: 'Request Strategy Audit', action: 'audit', style: 'action-btn' }
+                { text: 'Build a website or software', action: 'service_web' },
+                { text: 'Automate business processes', action: 'service_auto' },
+                { text: 'Improve marketing or growth', action: 'service_mktg' },
+                { text: 'Launch a product', action: 'service_launch' },
+                { text: 'Something else', action: 'service_other' }
             ]);
         }
 
@@ -210,21 +212,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         handleOptionClick(opt) {
             this.postUserMessage(opt.text);
-            if (opt.action === 'book' || opt.action === 'audit') {
-                this.triggerConversion(opt.action);
+
+            // Bypass natural routing if specific hardcoded triggers clicked
+            if (opt.action === 'book_now') {
+                this.startLeadCapture();
                 return;
             }
+
             this.processRouting(opt.text);
         }
 
-        triggerConversion(type) {
+        startLeadCapture() {
+            this.captureState = 'NAME';
+            this.leadData = {};
             this.optionsContainer.innerHTML = '';
             setTimeout(() => {
-                if (type === 'book') {
-                    this.postBotMessage(`Excellent. You can schedule a consultation with our team to discuss your project in detail.<br><br><a href="#contact" class="chat-chip action-btn" style="display:inline-block; margin-top:10px; text-decoration:none;">Go to Contact Form</a>`);
-                } else {
-                    this.postBotMessage(`Great choice. We can run a strategy audit where we review your current systems and recommend improvements.<br><br><a href="#contact" class="chat-chip action-btn" style="display:inline-block; margin-top:10px; text-decoration:none;">Go to Contact Form</a>`);
-                }
+                this.postBotMessage("Would you like us to review your project and suggest the best approach?<br><br>First, what is your name?");
             }, 600);
         }
 
@@ -233,34 +236,65 @@ document.addEventListener('DOMContentLoaded', () => {
             const lowerInput = input.toLowerCase();
 
             setTimeout(() => {
+
+                // --- Stateful Lead Capture Routing ---
+                if (this.captureState === 'NAME') {
+                    this.leadData.name = input;
+                    this.captureState = 'EMAIL';
+                    this.postBotMessage(`Thanks, ${this.leadData.name}. What is your best email address?`);
+                    return;
+                }
+
+                if (this.captureState === 'EMAIL') {
+                    this.leadData.email = input;
+                    this.captureState = 'PROJECT';
+                    this.postBotMessage(`Perfect. What type of project or business are you running?`);
+                    return;
+                }
+
+                if (this.captureState === 'PROJECT') {
+                    this.leadData.project = input;
+                    this.captureState = 'GOAL';
+                    this.postBotMessage(`Got it. Finally, what is the main goal or challenge you want us to solve?`);
+                    return;
+                }
+
+                if (this.captureState === 'GOAL') {
+                    this.leadData.goal = input;
+                    this.captureState = 'IDLE'; // Reset state
+                    this.postBotMessage(`Thank you for sharing that context. Our team is ready to help!<br><br>Please select a time on our calendar to discuss your approach:<br><br><a href="#contact" class="chat-chip action-btn" style="display:inline-block; margin-top:10px; text-decoration:none;">Book Consultation</a>`);
+                    return;
+                }
+
+                // --- Standard Keyword Routing (IDLE State) ---
                 let response = "";
 
-                if (lowerInput.includes('website') || lowerInput.includes('build') || lowerInput.includes('development')) {
-                    response = "Flare can help with that. We design and build modern websites and digital platforms while also supporting marketing and automation systems if needed.<br><br>Would you like to book a consultation to discuss your project, or request a strategy audit to evaluate your current digital setup?";
-                } else if (lowerInput.includes('marketing') || lowerInput.includes('seo') || lowerInput.includes('launch')) {
-                    response = "We specialize in Growth & Marketing Systems, including digital marketing strategies, influencer-led product launches, and e-commerce growth acceleration.<br><br>Would you like to book a consultation to discuss your project, or request a strategy audit?";
-                } else if (lowerInput.includes('ai') || lowerInput.includes('automation') || lowerInput.includes('operations')) {
-                    response = "Our AI & Automation Systems cover automation workflows, cloud infrastructure and migration, and custom operational logistics.<br><br>Would you like to book a consultation to discuss your project, or request a strategy audit to evaluate your current digital setup?";
-                } else if (lowerInput.includes('what do you do') || lowerInput.includes('services') || lowerInput.includes('explore') || lowerInput.includes('what does flare do')) {
-                    response = "Yes. Flare provides AI automation, marketing systems, development services, and cloud infrastructure. Our goal is to provide businesses with a complete ecosystem of solutions rather than isolated services.<br><br>How can we help you scale today?";
-                } else if (lowerInput.includes('book') || lowerInput.includes('consultation')) {
-                    this.triggerConversion('book');
+                if (lowerInput.includes('website') || lowerInput.includes('build') || lowerInput.includes('software')) {
+                    response = "Flare can help design and develop modern websites and digital platforms while also integrating automation and marketing systems if needed.<br><br>Would you like to discuss your project with our team?";
+                } else if (lowerInput.includes('automate') || lowerInput.includes('process') || lowerInput.includes('operations') || lowerInput.includes('ai solutions')) {
+                    response = "We build AI automation systems that streamline workflows, reduce manual tasks, and improve operational efficiency.<br><br>Would you like to book a consultation or request an audit?";
+                } else if (lowerInput.includes('marketing') || lowerInput.includes('growth') || lowerInput.includes('seo')) {
+                    response = "We help businesses scale using digital marketing strategies, influencer campaigns, and e-commerce growth systems.<br><br>Would you like to discuss your project with our team?";
+                } else if (lowerInput.includes('launch') || lowerInput.includes('product')) {
+                    response = "Flare supports product launches through marketing strategy, influencer campaigns, and content production.<br><br>Would you like to speak to a strategist?";
+                } else if (lowerInput.includes('book') || lowerInput.includes('consultation') || lowerInput.includes('project') || lowerInput.includes('pricing') || lowerInput.includes('timeline') || lowerInput.includes('audit')) {
+                    this.startLeadCapture();
                     return;
-                } else if (lowerInput.includes('audit') || lowerInput.includes('strategy')) {
-                    this.triggerConversion('audit');
-                    return;
+                } else if (lowerInput.includes('what do you do') || lowerInput.includes('services') || lowerInput.includes('explore')) {
+                    response = "Flare provides AI automation, marketing systems, development services, and cloud infrastructure. Our goal is to provide businesses with a complete ecosystem of solutions rather than isolated services.<br><br>How can we help you scale today?";
                 } else {
                     response = "I may not have all the details on that, but our team would be happy to help. You can book a consultation to speak directly with a specialist.";
                 }
 
                 this.postBotMessage(response);
                 this.renderOptions([
-                    { text: 'Book Consultation', action: 'book', style: 'action-btn' },
-                    { text: 'Request Strategy Audit', action: 'audit', style: 'action-btn' },
-                    { text: 'Ask another question', action: 'ask' }
+                    { text: 'Book Consultation', action: 'book_now', style: 'action-btn' },
+                    { text: 'Request Strategy Audit', action: 'book_now', style: 'action-btn' },
+                    { text: 'Explore Services', action: 'ask' },
+                    { text: 'AI Automation', action: 'ask' }
                 ]);
 
-            }, 800); // Simulated delay
+            }, 600); // Simulated delay
         }
     }
 
