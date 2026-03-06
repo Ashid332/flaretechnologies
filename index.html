@@ -192,116 +192,169 @@
             </div>
         </section>
 
-        <!-- Platform Ecosystem Section -->
+        <!-- Platform Ecosystem Section (Redesigned) -->
         <section id="services" class="ecosystem-section section-padding">
             <div class="container">
                 <div class="section-header text-center scroll-anim slide-up">
                     <h2 class="section-badge">Platform</h2>
                     <h3 class="section-title">AI-Powered Business Systems</h3>
-                    <p class="section-desc mx-auto">Flare Technologies integrates AI automation, marketing, engineering,
-                        and creative production into one intelligent ecosystem designed to help businesses build faster,
-                        operate smarter, and scale efficiently.</p>
+                    <p class="section-desc mx-auto">Flare Technologies delivers a complete ecosystem of digital, AI,
+                        engineering, and cloud solutions designed to help businesses build faster, operate smarter, and
+                        scale efficiently.</p>
                 </div>
 
-                <div class="platform-map scroll-anim fade-in delay-2">
-                    <svg class="eco-connections" viewBox="0 0 100 100" preserveAspectRatio="none">
-                        <defs>
-                            <linearGradient id="eco-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" stop-color="#FF3D3D" />
-                                <stop offset="50%" stop-color="#00D4FF" />
-                                <stop offset="100%" stop-color="#8A2BE2" />
-                            </linearGradient>
-                            <filter id="glow-line" x="-20%" y="-20%" width="140%" height="140%">
-                                <feGaussianBlur stdDeviation="1" result="blur" />
-                                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                            </filter>
-                        </defs>
-                        <!-- 
-                            Core is at 50,40
-                            AI is at 22,25
-                            Growth is at 78,25
-                            Content is at 50,80
-                        -->
-                        <line x1="50" y1="40" x2="22" y2="25" stroke="url(#eco-grad)" stroke-width="0.3"
-                            filter="url(#glow-line)" class="flow-anim" />
-                        <line x1="50" y1="40" x2="78" y2="25" stroke="url(#eco-grad)" stroke-width="0.3"
-                            filter="url(#glow-line)" class="flow-anim" />
-                        <line x1="50" y1="40" x2="50" y2="80" stroke="url(#eco-grad)" stroke-width="0.3"
-                            filter="url(#glow-line)" class="flow-anim" />
-                    </svg>
-
-                    <!-- Modules use absolute positioning matching SVG lines -->
-
-                    <div class="map-node eco-module" style="left: 22%; top: 25%; transform: translate(-50%, -50%);">
-                        <div class="eco-glow-border"></div>
-                        <div class="eco-header">
-                            <svg class="module-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="3"></circle>
-                                <path d="M3 12h5"></path>
-                                <path d="M16 12h5"></path>
-                                <path d="M12 3v5"></path>
-                                <path d="M12 16v5"></path>
-                                <path d="m5.636 5.636 3.536 3.536"></path>
-                                <path d="m18.364 5.636-3.536 3.536"></path>
-                            </svg>
-                            <h4>AI & Automation Systems</h4>
+                <!-- Category 1: AI & Automation Systems -->
+                <div class="services-category scroll-anim fade-in delay-1">
+                    <h4 class="services-category-title">AI & Automation Systems</h4>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-gradient-bar"></div>
+                            <div class="service-icon">🤖</div>
+                            <h4>AI Automation</h4>
+                            <p>Intelligent workflows that replace manual data entry and streamline core business
+                                operations.</p>
                         </div>
-                        <ul class="eco-services">
-                            <li>AI Automation</li>
-                            <li>Seamless Cloud Migration</li>
-                            <li>Custom Logistics Management System</li>
-                        </ul>
-                    </div>
-
-                    <div class="map-node eco-core" style="left: 50%; top: 40%; transform: translate(-50%, -50%);">
-                        <div class="core-pulse-ring"></div>
-                        <span class="logo-infinity-dot"
-                            style="width: 14px; height: 14px; margin-bottom: 0.5rem; display: inline-block;"></span>
-                        <h4>Flare AI Core</h4>
-                    </div>
-
-                    <div class="map-node eco-module" style="left: 78%; top: 25%; transform: translate(-50%, -50%);">
-                        <div class="eco-glow-border"></div>
-                        <div class="eco-header">
-                            <svg class="module-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path
-                                    d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
-                                <path
-                                    d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
-                                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
-                                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
-                            </svg>
-                            <h4>Growth & Marketing Systems</h4>
+                        <div class="service-card">
+                            <div class="service-gradient-bar"></div>
+                            <div class="service-icon">⚡</div>
+                            <h4>Workflow Automation</h4>
+                            <p>Connect disparate software tools into unified, autonomous execution pipelines.</p>
                         </div>
-                        <ul class="eco-services">
-                            <li>Digital Marketing</li>
-                            <li>Influencer-Led Product Launch</li>
-                            <li>E-commerce Growth Accelerator</li>
-                        </ul>
-                    </div>
-
-                    <div class="map-node eco-module" style="left: 50%; top: 80%; transform: translate(-50%, -50%);">
-                        <div class="eco-glow-border"></div>
-                        <div class="eco-header">
-                            <svg class="module-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path
-                                    d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z">
-                                </path>
-                                <circle cx="12" cy="13" r="3"></circle>
-                            </svg>
-                            <h4>Content & Product Execution</h4>
+                        <div class="service-card">
+                            <div class="service-gradient-bar"></div>
+                            <div class="service-icon">📦</div>
+                            <h4>Custom Logistics Management System</h4>
+                            <p>Data-driven routing and inventory tracking platforms built for modern supply chains.</p>
                         </div>
-                        <ul class="eco-services">
-                            <li>Video Production</li>
-                            <li>Brand Identity & Digital Revamp</li>
-                            <li>Agile Development Team Augmentation</li>
-                        </ul>
+                        <div class="service-card">
+                            <div class="service-gradient-bar"></div>
+                            <div class="service-icon">🧠</div>
+                            <h4>AI Agents & Business Automation</h4>
+                            <p>Deploy specialized AI agents designed to handle complex logic, scheduling, and
+                                decision-making.</p>
+                        </div>
                     </div>
-
                 </div>
+
+                <!-- Category 2: Development & Engineering -->
+                <div class="services-category scroll-anim fade-in delay-2">
+                    <h4 class="services-category-title">Development & Engineering</h4>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-gradient-bar"></div>
+                            <div class="service-icon">💻</div>
+                            <h4>Website Development</h4>
+                            <p>Design and build modern, high-performance websites optimized for scalability and user
+                                experience.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-gradient-bar"></div>
+                            <div class="service-icon">📱</div>
+                            <h4>Software Development</h4>
+                            <p>Robust, custom software solutions engineered to solve specific organizational challenges.
+                            </p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-gradient-bar"></div>
+                            <div class="service-icon">🌐</div>
+                            <h4>Web Application Development</h4>
+                            <p>Complex, interactive web apps featuring dynamic databases and seamless API integrations.
+                            </p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-gradient-bar"></div>
+                            <div class="service-icon">⚙️</div>
+                            <h4>Product Engineering</h4>
+                            <p>Full-lifecycle development taking abstract technical concepts through to production-ready
+                                software.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-gradient-bar"></div>
+                            <div class="service-icon">👥</div>
+                            <h4>Agile Development Team Augmentation</h4>
+                            <p>Embed senior-level engineers seamlessly into your existing technical workforce to
+                                accelerate delivery.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 3: Cloud & Infrastructure -->
+                <div class="services-category scroll-anim fade-in delay-3">
+                    <h4 class="services-category-title">Cloud & Infrastructure</h4>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-gradient-bar"></div>
+                            <div class="service-icon">☁️</div>
+                            <h4>Cloud Infrastructure Setup</h4>
+                            <p>Architect robust, high-availability server environments utilizing AWS, Azure, or Google
+                                Cloud.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-gradient-bar"></div>
+                            <div class="service-icon">🔄</div>
+                            <h4>Seamless Cloud Migration</h4>
+                            <p>Transition legacy applications to modern cloud architecture with zero data loss or
+                                operational downtime.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-gradient-bar"></div>
+                            <div class="service-icon">🚀</div>
+                            <h4>DevOps & Deployment Systems</h4>
+                            <p>Automate CI/CD pipelines ensuring fast, secure, and reliable code deployment to
+                                production.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-gradient-bar"></div>
+                            <div class="service-icon">🏛️</div>
+                            <h4>Scalable Backend Architecture</h4>
+                            <p>Database design and routing logic structured to handle exponential user load without
+                                degrading.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 4: Growth & Marketing Systems -->
+                <div class="services-category scroll-anim fade-in delay-4">
+                    <h4 class="services-category-title">Growth & Marketing Systems</h4>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-gradient-bar"></div>
+                            <div class="service-icon">📈</div>
+                            <h4>Digital Marketing</h4>
+                            <p>Data-driven acquisition campaigns designed to decrease CPA and drive measurable revenue.
+                            </p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-gradient-bar"></div>
+                            <div class="service-icon">🎯</div>
+                            <h4>Influencer-Led Product Launch</h4>
+                            <p>Strategic partnerships mapping influencer audiences directly to dynamic product rollouts.
+                            </p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-gradient-bar"></div>
+                            <div class="service-icon">🛒</div>
+                            <h4>E-commerce Growth Accelerator</h4>
+                            <p>Optimize storefront conversion rates and implement aggressive retargeting
+                                infrastructures.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-gradient-bar"></div>
+                            <div class="service-icon">✨</div>
+                            <h4>Brand Identity & Digital Presence Revamp</h4>
+                            <p>Modernize your visual language and digital positioning to capture premium market share.
+                            </p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-gradient-bar"></div>
+                            <div class="service-icon">🎬</div>
+                            <h4>Video Production</h4>
+                            <p>High-fidelity commercial video assets engineered to build trust and educate end users.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
