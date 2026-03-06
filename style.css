@@ -280,20 +280,23 @@ p {
 }
 
 .btn-header-primary {
-    background: var(--infinity-gradient);
-    color: #FFF;
+    background: linear-gradient(135deg, #FF3D3D, #FF8C00, #FFD500, #00D4FF, #5A5AFF);
+    background-size: 200% auto;
+    color: #FFFFFF;
     text-decoration: none;
     padding: 0.5rem 1.25rem;
-    border-radius: 6px;
+    border-radius: 8px;
     font-size: 0.9rem;
     font-weight: 600;
-    transition: all 0.3s var(--easing-premium);
+    transition: all 0.4s var(--easing-premium);
     border: none;
+    box-shadow: 0 4px 15px rgba(255, 61, 61, 0.2);
 }
 
 .btn-header-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 140, 0, 0.4);
+    background-position: right center;
 }
 
 /* Buttons */
@@ -316,15 +319,20 @@ p {
 }
 
 .btn-primary {
-    background: var(--text-primary);
-    color: var(--bg-base);
+    background: linear-gradient(135deg, #FF3D3D, #FF8C00, #FFD500, #00D4FF, #5A5AFF);
+    background-size: 200% auto;
+    color: #FFFFFF;
     border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(255, 61, 61, 0.2);
+    transition: all 0.4s var(--easing-premium);
 }
 
 .btn-primary:hover {
-    background: var(--infinity-gradient-hover);
-    color: #FFF;
-    box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+    background-position: right center;
+    color: #FFFFFF;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 140, 0, 0.4);
 }
 
 .btn-secondary {
