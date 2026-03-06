@@ -106,21 +106,23 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 4rem;
+    padding: 1.25rem 4rem;
+    /* Tightened slightly since logo is taller */
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
     background: transparent;
     border-bottom: 1px solid transparent;
-    transition: all 0.4s var(--easing-premium);
+    transition: all 0.4s var(--easing-premium, cubic-bezier(0.25, 1, 0.5, 1));
 }
 
 .header.scrolled {
     background: rgba(11, 15, 25, 0.85);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border-subtle);
-    padding: 1rem 4rem;
+    padding: 0.75rem 4rem;
+    /* Condensed padding upon scroll */
 }
 
 .header.hide-nav {
