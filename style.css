@@ -738,11 +738,13 @@ p {
 .eco-interactive-layout {
     position: relative;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto;
     gap: 2rem;
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 4rem auto 0;
     z-index: 2;
+    align-items: center;
 }
 
 /* Base Floating Card */
@@ -758,32 +760,99 @@ p {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.02);
     cursor: default;
     overflow: hidden;
+    z-index: 2;
 }
 
-/* Diamond Position Spacing */
+/* Hub and Spoke Position Spacing */
 .card-top {
-    grid-column: 1 / -1;
-    justify-self: center;
-    width: 60%;
+    grid-column: 2;
+    grid-row: 1;
+    transform: translateY(20px);
 }
 
 .card-mid-left {
     grid-column: 1;
-    justify-self: end;
-    transform: translateY(-40px);
+    grid-row: 2;
+    transform: translateX(20px);
+}
+
+.eco-central-node {
+    grid-column: 2;
+    grid-row: 2;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: rgba(11, 15, 25, 0.9);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    /* Make it circular or pill shape */
+    padding: 3rem;
+    aspect-ratio: 1 / 1;
+    box-shadow: 0 0 40px rgba(138, 43, 226, 0.15), inset 0 0 20px rgba(255, 255, 255, 0.05);
+    z-index: 3;
+    transition: all 0.5s ease;
+}
+
+.central-glow {
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    background: var(--infinity-gradient);
+    opacity: 0.3;
+    filter: blur(8px);
+    z-index: -1;
+    animation: pulseCentralGlow 4s infinite alternate;
+}
+
+@keyframes pulseCentralGlow {
+    0% {
+        opacity: 0.2;
+        transform: scale(0.98);
+    }
+
+    100% {
+        opacity: 0.5;
+        transform: scale(1.02);
+    }
+}
+
+.central-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.eco-central-node h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+    background: var(--infinity-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    max-width: 150px;
 }
 
 .card-mid-right {
-    grid-column: 2;
-    justify-self: start;
-    transform: translateY(-40px);
+    grid-column: 3;
+    grid-row: 2;
+    transform: translateX(-20px);
 }
 
 .card-bottom {
-    grid-column: 1 / -1;
-    justify-self: center;
-    width: 60%;
-    transform: translateY(-80px);
+    grid-column: 2;
+    grid-row: 3;
+    transform: translateY(-20px);
 }
 
 /* The Gradient Glow Border */
@@ -1663,15 +1732,33 @@ p {
         min-width: 0;
     }
 
-    /* Reset Diamond positioning offsets */
+    /* Reset Hub and Spoke positioning offsets */
     .card-top,
     .card-mid-left,
     .card-mid-right,
     .card-bottom {
         grid-column: auto;
+        grid-row: auto;
         justify-self: auto;
         transform: none;
         width: 100%;
+    }
+
+    .eco-central-node {
+        grid-column: auto;
+        grid-row: auto;
+        order: -1;
+        /* Keep the hub at the top of the stack */
+        width: 100%;
+        max-width: 400px;
+        aspect-ratio: auto;
+        border-radius: 20px;
+        padding: 2.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .central-glow {
+        border-radius: 20px;
     }
 
     /* Remove float stagger on smaller screens */
