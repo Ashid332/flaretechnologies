@@ -124,54 +124,31 @@ document.addEventListener('DOMContentLoaded', () => {
        ========================================================= */
     class FlareChatbot {
         constructor() {
-            this.launcher = document.getElementById('chatLauncher');
-            this.window = document.getElementById('chatWindow');
-            this.body = document.getElementById('chatBody');
-            this.optionsContainer = document.getElementById('chatOptions');
-            this.form = document.getElementById('chatForm');
-            this.input = document.getElementById('chatInput');
-            this.launcherIcon = this.launcher.querySelector('.launcher-icon');
-            this.closeIcon = this.launcher.querySelector('.close-icon');
+            this.body = document.querySelector('.chatbot-body');
+            this.input = document.querySelector('.chat-input');
+            this.sendBtn = document.querySelector('.chat-send');
 
-            this.isOpen = false;
             this.captureState = 'IDLE';
             this.leadData = {};
             this.init();
         }
 
         init() {
-            // Event Listeners
-            this.launcher.addEventListener('click', () => this.toggleChat());
-            this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+            if (!this.body || !this.input || !this.sendBtn) return;
 
-            // Setup Initial State
-            this.postBotMessage(`Hello! I'm the Flare assistant. I can help you explore our AI solutions and digital growth systems.<br><br>What are you looking to improve today?`);
-            this.renderOptions([
-                { text: 'Build a website or software', action: 'service_web' },
-                { text: 'Automate business processes', action: 'service_auto' },
-                { text: 'Improve marketing or growth', action: 'service_mktg' },
-                { text: 'Launch a product', action: 'service_launch' },
-                { text: 'Something else', action: 'service_other' }
-            ]);
-        }
-
-        toggleChat() {
-            this.isOpen = !this.isOpen;
-            if (this.isOpen) {
-                this.window.classList.remove('hidden');
-                this.launcherIcon.classList.add('hidden');
-                this.closeIcon.classList.remove('hidden');
-                setTimeout(() => this.input.focus(), 300);
-            } else {
-                this.window.classList.add('hidden');
-                this.launcherIcon.classList.remove('hidden');
-                this.closeIcon.classList.add('hidden');
-            }
+            // Event Listeners for sending messages
+            this.sendBtn.addEventListener('click', () => this.handleSubmit());
+            this.input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    this.handleSubmit();
+                }
+            });
         }
 
         postBotMessage(htmlContent) {
             const msgDiv = document.createElement('div');
-            msgDiv.className = 'chat-msg bot';
+            msgDiv.className = 'chat-message bot-message';
             msgDiv.innerHTML = htmlContent;
             this.body.appendChild(msgDiv);
             this.scrollToBottom();
@@ -179,29 +156,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
         postUserMessage(text) {
             const msgDiv = document.createElement('div');
-            msgDiv.className = 'chat-msg user';
+            // Reusing existing text string for user bubble, inline styles to differentiate from bot
+            msgDiv.className = 'chat-message user-message';
+            msgDiv.style.alignSelf = 'flex-end';
+            msgDiv.style.background = 'var(--infinity-gradient)';
+            msgDiv.style.color = '#fff';
+            msgDiv.style.borderRadius = '20px 20px 4px 20px';
+            msgDiv.style.border = 'none';
             msgDiv.textContent = text;
             this.body.appendChild(msgDiv);
             this.scrollToBottom();
-        }
-
-        renderOptions(options) {
-            this.optionsContainer.innerHTML = '';
-            options.forEach(opt => {
-                const btn = document.createElement('button');
-                btn.className = `chat-chip ${opt.style || ''}`;
-                btn.textContent = opt.text;
-                btn.onclick = () => this.handleOptionClick(opt);
-                this.optionsContainer.appendChild(btn);
-            });
         }
 
         scrollToBottom() {
             this.body.scrollTop = this.body.scrollHeight;
         }
 
-        handleSubmit(e) {
-            e.preventDefault();
+        handleSubmit() {
             const text = this.input.value.trim();
             if (!text) return;
 
@@ -210,33 +181,18 @@ document.addEventListener('DOMContentLoaded', () => {
             this.processRouting(text);
         }
 
-        handleOptionClick(opt) {
-            this.postUserMessage(opt.text);
-
-            // Bypass natural routing if specific hardcoded triggers clicked
-            if (opt.action === 'book_now') {
-                this.startLeadCapture();
-                return;
-            }
-
-            this.processRouting(opt.text);
-        }
-
         startLeadCapture() {
             this.captureState = 'NAME';
             this.leadData = {};
-            this.optionsContainer.innerHTML = '';
             setTimeout(() => {
                 this.postBotMessage("Would you like us to review your project and suggest the best approach?<br><br>First, what is your name?");
             }, 600);
         }
 
         processRouting(input) {
-            this.optionsContainer.innerHTML = ''; // Clear chips while 'thinking'
             const lowerInput = input.toLowerCase();
 
             setTimeout(() => {
-
                 // --- Stateful Lead Capture Routing ---
                 if (this.captureState === 'NAME') {
                     this.leadData.name = input;
@@ -262,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (this.captureState === 'GOAL') {
                     this.leadData.goal = input;
                     this.captureState = 'IDLE'; // Reset state
-                    this.postBotMessage(`Thank you for sharing that context. Our team is ready to help!<br><br>Please select a time on our calendar to discuss your approach:<br><br><a href="#contact" class="chat-chip action-btn" style="display:inline-block; margin-top:10px; text-decoration:none;">Book Consultation</a>`);
+                    this.postBotMessage(`Thank you for sharing that context. Our team is ready to help!<br><br>Please select a time on our calendar to discuss your approach:<br><br><a href="#contact" style="display:inline-block; margin-top:10px; padding: 0.5rem 1rem; border-radius: 20px; text-decoration:none; background: var(--infinity-gradient); color: white; font-weight: bold;">Book Consultation</a>`);
                     return;
                 }
 
@@ -287,19 +243,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 this.postBotMessage(response);
-                this.renderOptions([
-                    { text: 'Book Consultation', action: 'book_now', style: 'action-btn' },
-                    { text: 'Request Strategy Audit', action: 'book_now', style: 'action-btn' },
-                    { text: 'Explore Services', action: 'ask' },
-                    { text: 'AI Automation', action: 'ask' }
-                ]);
-
             }, 600); // Simulated delay
         }
     }
 
     // Initialize Chatbot when DOM loads
-    if (document.getElementById('flareChatbot')) {
+    if (document.querySelector('.chatbot-wrapper')) {
         new FlareChatbot();
     }
 
