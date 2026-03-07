@@ -189,61 +189,91 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 600);
         }
 
-        processRouting(input) {
+        showTypingIndicator() {
+            if (this.typingIndicator) return;
+            this.typingIndicator = document.createElement('div');
+            this.typingIndicator.className = 'typing-indicator';
+            this.typingIndicator.innerHTML = `
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+            `;
+            this.body.appendChild(this.typingIndicator);
+            this.scrollToBottom();
+        }
+
+        removeTypingIndicator() {
+            if (this.typingIndicator) {
+                this.typingIndicator.remove();
+                this.typingIndicator = null;
+            }
+        }
+
+        async processRouting(input) {
             const lowerInput = input.toLowerCase();
 
-            setTimeout(() => {
-                // --- Stateful Lead Capture Routing ---
-                if (this.captureState === 'NAME') {
-                    this.leadData.name = input;
-                    this.captureState = 'EMAIL';
-                    this.postBotMessage(`Thanks, ${this.leadData.name}. What is your best email address?`);
-                    return;
-                }
+            // --- Stateful Lead Capture Routing ---
+            if (this.captureState === 'NAME') {
+                this.leadData.name = input;
+                this.captureState = 'EMAIL';
+                this.postBotMessage(`Thanks, ${this.leadData.name}. What is your best email address?`);
+                return;
+            }
 
-                if (this.captureState === 'EMAIL') {
-                    this.leadData.email = input;
-                    this.captureState = 'PROJECT';
-                    this.postBotMessage(`Perfect. What type of project or business are you running?`);
-                    return;
-                }
+            if (this.captureState === 'EMAIL') {
+                this.leadData.email = input;
+                this.captureState = 'PROJECT';
+                this.postBotMessage(`Perfect. What type of project or business are you running?`);
+                return;
+            }
 
-                if (this.captureState === 'PROJECT') {
-                    this.leadData.project = input;
-                    this.captureState = 'GOAL';
-                    this.postBotMessage(`Got it. Finally, what is the main goal or challenge you want us to solve?`);
-                    return;
-                }
+            if (this.captureState === 'PROJECT') {
+                this.leadData.project = input;
+                this.captureState = 'GOAL';
+                this.postBotMessage(`Got it. Finally, what is the main goal or challenge you want us to solve?`);
+                return;
+            }
 
-                if (this.captureState === 'GOAL') {
-                    this.leadData.goal = input;
-                    this.captureState = 'IDLE'; // Reset state
-                    this.postBotMessage(`Thank you for sharing that context. Our team is ready to help!<br><br>Please select a time on our calendar to discuss your approach:<br><br><a href="#contact" style="display:inline-block; margin-top:10px; padding: 0.5rem 1rem; border-radius: 20px; text-decoration:none; background: var(--infinity-gradient); color: white; font-weight: bold;">Book Consultation</a>`);
-                    return;
-                }
+            if (this.captureState === 'GOAL') {
+                this.leadData.goal = input;
+                this.captureState = 'IDLE'; // Reset state
+                this.postBotMessage(`Thank you for sharing that context. Our team is ready to help!<br><br>Please select a time on our calendar to discuss your approach:<br><br><a href="#contact" style="display:inline-block; margin-top:10px; padding: 0.5rem 1rem; border-radius: 20px; text-decoration:none; background: var(--infinity-gradient); color: white; font-weight: bold;">Book Consultation</a>`);
+                return;
+            }
 
-                // --- Standard Keyword Routing (IDLE State) ---
-                let response = "";
+            // --- Smart Lead Interception for specific keywords ---
+            if (lowerInput.includes('pricing') || lowerInput.includes('project') || lowerInput.includes('build website') || lowerInput.includes('automation') || lowerInput.includes('marketing help')) {
+                this.postBotMessage(`Would you like to schedule a consultation with our team?<br><br><a href="#contact" style="display:inline-block; margin-top:10px; padding: 0.5rem 1rem; border-radius: 20px; text-decoration:none; background: var(--infinity-gradient); color: white; font-weight: bold; margin-right: 10px;">Book Consultation</a> <a href="#contact" style="display:inline-block; margin-top:10px; padding: 0.5rem 1rem; border-radius: 20px; text-decoration:none; border: 1px solid var(--border-subtle); color: white; font-weight: bold;">Request Strategy Audit</a>`);
+                return;
+            }
 
-                if (lowerInput.includes('website') || lowerInput.includes('build') || lowerInput.includes('software')) {
-                    response = "Flare can help design and develop modern websites and digital platforms while also integrating automation and marketing systems if needed.<br><br>Would you like to discuss your project with our team?";
-                } else if (lowerInput.includes('automate') || lowerInput.includes('process') || lowerInput.includes('operations') || lowerInput.includes('ai solutions')) {
-                    response = "We build AI automation systems that streamline workflows, reduce manual tasks, and improve operational efficiency.<br><br>Would you like to book a consultation or request an audit?";
-                } else if (lowerInput.includes('marketing') || lowerInput.includes('growth') || lowerInput.includes('seo')) {
-                    response = "We help businesses scale using digital marketing strategies, influencer campaigns, and e-commerce growth systems.<br><br>Would you like to discuss your project with our team?";
-                } else if (lowerInput.includes('launch') || lowerInput.includes('product')) {
-                    response = "Flare supports product launches through marketing strategy, influencer campaigns, and content production.<br><br>Would you like to speak to a strategist?";
-                } else if (lowerInput.includes('book') || lowerInput.includes('consultation') || lowerInput.includes('project') || lowerInput.includes('pricing') || lowerInput.includes('timeline') || lowerInput.includes('audit')) {
-                    this.startLeadCapture();
-                    return;
-                } else if (lowerInput.includes('what do you do') || lowerInput.includes('services') || lowerInput.includes('explore')) {
-                    response = "Flare provides AI automation, marketing systems, development services, and cloud infrastructure. Our goal is to provide businesses with a complete ecosystem of solutions rather than isolated services.<br><br>How can we help you scale today?";
+            // --- Real OpenAI API Request ---
+            this.showTypingIndicator();
+
+            try {
+                const response = await fetch("/api/chat", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ message: input })
+                });
+
+                const data = await response.json();
+
+                this.removeTypingIndicator();
+
+                if (data.reply) {
+                    // Injecting raw HTML returned from OpenAI (which has basic elegant formatting permitted)
+                    this.postBotMessage(data.reply);
                 } else {
-                    response = "I may not have all the details on that, but our team would be happy to help. You can book a consultation to speak directly with a specialist.";
+                    this.postBotMessage("I'm currently unable to reach my AI servers, but we would love to connect with you. Please visit our <a href='#contact' style='color: #00D4FF;'>Contact page</a>.");
                 }
-
-                this.postBotMessage(response);
-            }, 600); // Simulated delay
+            } catch (error) {
+                console.error("Chatbot API Error:", error);
+                this.removeTypingIndicator();
+                this.postBotMessage("Sorry, I'm experiencing technical difficulties. Our team would still love to help you!");
+            }
         }
     }
 
