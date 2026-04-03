@@ -1,4 +1,4 @@
-import React from 'react';
+
 import MethodologyComponent from "@/components/Methodology"
 
 export default function Methodology() {

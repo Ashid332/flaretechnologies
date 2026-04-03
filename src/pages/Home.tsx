@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Hero from "@/components/ui/animated-shader-hero"
 import GrowthStack from "@/components/GrowthStack"
 import WhyFlare from "@/components/WhyFlare"

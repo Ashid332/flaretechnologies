@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Philosophy from "@/components/Philosophy"
 
 export default function About() {

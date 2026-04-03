@@ -1,4 +1,4 @@
-import React from 'react';
+
 import ResultsComponent from "@/components/Results"
 
 export default function Results() {
