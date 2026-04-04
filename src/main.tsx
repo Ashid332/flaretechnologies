@@ -14,6 +14,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // Pages
 import Home from "@/pages/Home";
 import Services from "@/pages/Services";
+import AllServices from "@/pages/AllServices";
+import ServiceDetail from "@/pages/ServiceDetail";
 import Methodology from "@/pages/Methodology";
 import Results from "@/pages/Results";
 import About from "@/pages/About";
@@ -31,6 +33,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home openModal={openModal} />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/services/all" element={<AllServices />} />
+        <Route path="/services/:slug" element={<ServiceDetail />} />
         <Route path="/methodology" element={<Methodology />} />
         <Route path="/results" element={<Results />} />
         <Route path="/about" element={<About />} />

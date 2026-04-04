@@ -1251,90 +1251,104 @@ p {
 
 /* --- PROCESS TIMELINE (Horizontal) --- */
 .process-section {
-    background: var(--bg-secondary);
+    background: var(--bg-base); /* Removing heavy background gradient, using base */
     overflow: hidden;
-    /* timeline might stretch */
+    position: relative;
 }
 
 .horizontal-timeline {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 3rem;
-    margin-top: 5rem;
+    gap: 2rem;
+    margin-top: 4rem;
     position: relative;
+    z-index: 2;
 }
 
-/* Glowing Connecting line */
+/* Glowing Connecting line - thinner, more subtle */
 .horizontal-timeline::before {
     content: '';
     position: absolute;
-    top: 24px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, #FF3D3D, #00D4FF, #8A2BE2, transparent);
-    opacity: 0.5;
-    z-index: 1;
-    border-radius: 3px;
+    top: 52px; /* Center of icon box */
+    left: 2rem;
+    width: calc(100% - 4rem);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.15), transparent);
+    z-index: -1;
 }
 
 .timeline-node {
     position: relative;
-    padding-top: 4.5rem;
-    transition: transform 0.4s var(--easing-premium);
+    background: rgba(11, 15, 25, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: all 0.4s var(--easing-premium);
 }
 
 .timeline-node:hover {
     transform: translateY(-8px);
+    background: rgba(20, 25, 40, 0.6);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 255, 255, 0.03);
 }
 
 .timeline-icon-box {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     border-radius: 12px;
-    background: rgba(11, 15, 25, 0.9);
-    backdrop-filter: blur(10px);
+    background: rgba(18, 24, 38, 0.9);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 2;
-    border: 2px solid transparent;
-    /* Replaced by specific gradient classes */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    margin-bottom: 2rem;
+    border: 1px solid transparent;
     transition: all 0.4s var(--easing-premium);
+    position: relative;
 }
 
 .timeline-node:hover .timeline-icon-box {
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 212, 255, 0.3);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
 }
 
 .timeline-icon {
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
 }
 
 .gradient-1-border {
-    border-color: #FF3D3D;
-    box-shadow: 0 0 15px rgba(255, 61, 61, 0.2);
+    border-color: rgba(255, 61, 61, 0.3);
+    color: #FF3D3D;
+    box-shadow: 0 0 15px rgba(255, 61, 61, 0.1);
 }
+.gradient-1-border svg { stroke: #FF3D3D; }
 
 .gradient-2-border {
-    border-color: #FF8C00;
-    box-shadow: 0 0 15px rgba(255, 140, 0, 0.2);
+    border-color: rgba(255, 140, 0, 0.3);
+    color: #FF8C00;
+    box-shadow: 0 0 15px rgba(255, 140, 0, 0.1);
 }
+.gradient-2-border svg { stroke: #FF8C00; }
 
 .gradient-3-border {
-    border-color: #00D4FF;
-    box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+    border-color: rgba(0, 212, 255, 0.3);
+    color: #00D4FF;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.1);
 }
+.gradient-3-border svg { stroke: #00D4FF; }
 
 .gradient-4-border {
-    border-color: #8A2BE2;
-    box-shadow: 0 0 15px rgba(138, 43, 226, 0.2);
+    border-color: rgba(138, 43, 226, 0.3);
+    color: #8A2BE2;
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.1);
 }
+.gradient-4-border svg { stroke: #8A2BE2; }
 
 .step-label {
     display: block;
@@ -1342,13 +1356,16 @@ p {
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: 0.1em;
     color: var(--text-secondary);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
 }
 
 .timeline-content h4 {
-    margin-bottom: 0.5rem;
-    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
 }
 
 
@@ -2188,21 +2205,22 @@ p {
     }
 
     .horizontal-timeline::before {
-        left: 24px;
+        left: 20px;
         top: 0;
-        width: 3px;
+        width: 1px;
         height: 100%;
-        background: linear-gradient(180deg, #FF3D3D, #00D4FF, #8A2BE2);
+        background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.4), transparent);
     }
 
     .timeline-node {
-        padding-top: 0;
-        padding-left: 5rem;
+        padding: 2rem 1.5rem; 
+        margin-left: 3rem;
     }
 
     .timeline-icon-box {
-        top: 0;
-        left: 0;
+        position: absolute;
+        top: 2rem;
+        left: -4rem; /* Moves icon out of the card to sit on the line */
     }
 
     .results-grid {
