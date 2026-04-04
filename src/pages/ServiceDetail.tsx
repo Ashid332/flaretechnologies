@@ -292,7 +292,6 @@ const ServiceDetail = ({ openModal }: ServiceDetailProps) => {
                         <button
                             onClick={openModal}
                             className="btn btn-primary cursor-pointer"
-                            style={{ borderRadius: '999px', padding: '0.875rem 2rem', fontSize: '0.9375rem', fontWeight: 700, display: 'inline-flex' }}
                         >
                             Book Consultation
                         </button>

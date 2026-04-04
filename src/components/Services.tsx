@@ -186,13 +186,13 @@ const Services: React.FC<ServicesProps> = ({ openModal }) => {
                         <button
                             onClick={openModal}
                             className="btn btn-primary cursor-pointer"
-                            style={{ borderRadius: '999px', padding: '0.875rem 2rem', fontSize: '0.9375rem', fontWeight: 700 }}>
+                        >
                             Book Consultation
                         </button>
                         <button
                             onClick={openModal}
                             className="btn btn-secondary cursor-pointer"
-                            style={{ borderRadius: '999px', padding: '0.875rem 2rem', fontSize: '0.9375rem', fontWeight: 600 }}>
+                        >
                             Start Strategy Survey
                         </button>
                     </div>
