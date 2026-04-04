@@ -367,8 +367,8 @@ p {
 @media (min-width: 640px) {
     .btn {
         width: auto;
-        font-size: 1rem;
-        padding: 14px 36px;
+        font-size: 1.0625rem;
+        padding: 16px 40px;
     }
 }
 
