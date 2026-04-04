@@ -3,7 +3,11 @@ import { useParams, Link } from 'react-router-dom';
 import { servicesData, ServiceCategory, SubService } from '@/data/servicesData';
 import { ArrowLeft, CheckCircle2 } from 'lucide-react';
 
-const ServiceDetail = () => {
+interface ServiceDetailProps {
+    openModal: () => void;
+}
+
+const ServiceDetail = ({ openModal }: ServiceDetailProps) => {
     const { slug } = useParams<{ slug: string }>();
     const [service, setService] = useState<{ category: ServiceCategory; sub: SubService } | null>(null);
 
@@ -285,13 +289,13 @@ const ServiceDetail = () => {
                         }}>
                             Schedule a free discovery call with our architects to map out exactly how we can implement this for your business.
                         </p>
-                        <a
-                            href="#contact"
-                            className="btn btn-primary"
+                        <button
+                            onClick={openModal}
+                            className="btn btn-primary cursor-pointer"
                             style={{ borderRadius: '999px', padding: '0.875rem 2rem', fontSize: '0.9375rem', fontWeight: 700, display: 'inline-flex' }}
                         >
                             Book Consultation
-                        </a>
+                        </button>
                     </div>
                 </div>
 

@@ -1,10 +1,14 @@
 
 import ServicesComponent from "@/components/Services"
 
-export default function Services() {
+interface ServicesPageProps {
+    openModal: () => void;
+}
+
+export default function Services({ openModal }: ServicesPageProps) {
     return (
         <main className="min-h-screen">
-            <ServicesComponent />
+            <ServicesComponent openModal={openModal} />
         </main>
     );
 }

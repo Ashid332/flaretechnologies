@@ -385,11 +385,11 @@ const Hero: React.FC<HeroProps> = ({
 
           {/* CTA Buttons with Animation */}
           {buttons && (
-            <div className="flex flex-col sm:flex-row gap-3 justify-center mt-4 sm:mt-6 animate-fade-in-up animation-delay-800 w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6 sm:mt-8 animate-fade-in-up animation-delay-800 w-full sm:w-auto px-4 sm:px-0">
               {buttons.primary && (
                 <button
                   onClick={buttons.primary.onClick}
-                  className="px-4 py-2 sm:px-6 sm:py-3 w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25"
+                  className="px-8 py-3.5 sm:px-10 sm:py-4 w-full sm:w-auto bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-400 hover:to-red-400 text-white rounded-full font-bold text-sm sm:text-base transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-orange-500/30 cursor-pointer"
                 >
                   {buttons.primary.text}
                 </button>
@@ -397,7 +397,7 @@ const Hero: React.FC<HeroProps> = ({
               {buttons.secondary && (
                 <button
                   onClick={buttons.secondary.onClick}
-                  className="px-4 py-2 sm:px-6 sm:py-3 w-full sm:w-auto bg-blue-500/10 hover:bg-blue-500/20 border border-cyan-300/30 hover:border-cyan-300/50 text-cyan-100 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+                  className="px-8 py-3.5 sm:px-10 sm:py-4 w-full sm:w-auto bg-white/5 hover:bg-white/10 border border-white/15 hover:border-orange-400/40 text-white rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:scale-105 backdrop-blur-sm cursor-pointer"
                 >
                   {buttons.secondary.text}
                 </button>

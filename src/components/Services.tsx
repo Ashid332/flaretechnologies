@@ -52,7 +52,11 @@ const nodes = [
     { area: 'bottomright', colorTheme: 'red',    dataIndex: 3 },
 ];
 
-const Services: React.FC = () => {
+interface ServicesProps {
+    openModal: () => void;
+}
+
+const Services: React.FC<ServicesProps> = ({ openModal }) => {
     return (
         <section className="relative overflow-hidden" style={{ background: 'var(--bg-base)', paddingTop: '7rem', paddingBottom: '5rem' }}>
             {/* Ambient glow */}
@@ -179,16 +183,18 @@ const Services: React.FC = () => {
                 {/* ── Action Buttons ── */}
                 <div className="flex flex-col items-center gap-4 pt-10 w-full max-w-3xl mx-auto" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
                     <div className="flex flex-col sm:flex-row gap-3 items-center justify-center">
-                        <a href="#contact"
-                            className="btn btn-primary"
+                        <button
+                            onClick={openModal}
+                            className="btn btn-primary cursor-pointer"
                             style={{ borderRadius: '999px', padding: '0.875rem 2rem', fontSize: '0.9375rem', fontWeight: 700 }}>
                             Book Consultation
-                        </a>
-                        <a href="#contact"
-                            className="btn btn-secondary"
+                        </button>
+                        <button
+                            onClick={openModal}
+                            className="btn btn-secondary cursor-pointer"
                             style={{ borderRadius: '999px', padding: '0.875rem 2rem', fontSize: '0.9375rem', fontWeight: 600 }}>
                             Start Strategy Survey
-                        </a>
+                        </button>
                     </div>
                     <Link to="/services/all"
                         className="group flex items-center gap-2 transition-colors duration-200"
