@@ -385,11 +385,11 @@ const Hero: React.FC<HeroProps> = ({
 
           {/* CTA Buttons with Animation */}
           {buttons && (
-            <div className="flex flex-col sm:flex-row gap-5 justify-center mt-8 sm:mt-12 animate-fade-in-up animation-delay-800 w-full sm:w-auto px-6 sm:px-0">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center mt-12 sm:mt-16 animate-fade-in-up animation-delay-800 w-full sm:w-auto px-8 sm:px-0">
               {buttons.primary && (
                 <button
                   onClick={buttons.primary.onClick}
-                  className="px-10 py-4 sm:px-14 sm:py-5 w-full sm:w-auto bg-gradient-to-r from-[#ff4d00] to-[#ff7b00] hover:from-[#ff5e1a] hover:to-[#ff8c1a] text-white rounded-full font-bold text-base sm:text-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_40px_-10px_rgba(255,77,0,0.5)] cursor-pointer border-none"
+                  className="px-12 py-5 sm:px-16 sm:py-6 w-full sm:w-auto bg-gradient-to-r from-[#ff4d00] to-[#ff7b00] hover:from-[#ff5e1a] hover:to-[#ff8c1a] text-white rounded-full font-bold text-lg sm:text-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_45px_-12px_rgba(255,77,0,0.6)] cursor-pointer border-none"
                 >
                   {buttons.primary.text}
                 </button>
@@ -397,7 +397,7 @@ const Hero: React.FC<HeroProps> = ({
               {buttons.secondary && (
                 <button
                   onClick={buttons.secondary.onClick}
-                  className="px-10 py-4 sm:px-14 sm:py-5 w-full sm:w-auto bg-white/5 hover:bg-white/10 border border-white/20 hover:border-[#ff4d00]/50 text-white rounded-full font-bold text-base sm:text-lg transition-all duration-300 hover:scale-105 backdrop-blur-md cursor-pointer"
+                  className="px-12 py-5 sm:px-16 sm:py-6 w-full sm:w-auto bg-white/5 hover:bg-white/10 border border-white/20 hover:border-[#ff4d00]/50 text-white rounded-full font-bold text-lg sm:text-xl transition-all duration-300 hover:scale-105 backdrop-blur-lg cursor-pointer"
                 >
                   {buttons.secondary.text}
                 </button>
